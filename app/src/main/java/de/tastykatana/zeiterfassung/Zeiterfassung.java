@@ -36,6 +36,7 @@ public class Zeiterfassung {
             return;
         }
         runningSince = DateTime.now();
+        // TODO update runningSince preference
         Log.d("zeiterfassung", "zeiterfassung started at " + DateTime.now().toString());
     }
 
