@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Zeiterfassung</string>
     <string name="btnStartLbl">Starte Zeiterfassung</string>
-    <string name="btnStoptLbl">Stoppe Zeiterfassung</string>
+    <string name="btnStopLbl">Stoppe Zeiterfassung</string>
     <string name="btnExportLbl">Exportiere Stundenzettel</string>
     <string name="chckbxCorrectTimesLbl">Korrigiere Start- und Endzeiten</string>
 </resources>
