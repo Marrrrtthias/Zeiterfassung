@@ -2,13 +2,10 @@ package de.tastykatana.zeiterfassung;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
-
-import org.joda.time.DateTime;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
@@ -48,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             MyApp.zeiterfassung.start();
-            Log.d("zeiterfassung", "zeiterfassung started at " + DateTime.now().toString());
             btnStartStop.setText(getString(R.string.btnStopLbl));
             btnStartStop.setOnClickListener(new StopOnClickListener());
         }
@@ -60,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             MyApp.zeiterfassung.stop();
-            Log.d("zeiterfassung", "zeiterfassung stopped at " + DateTime.now().toString());
             btnStartStop.setText(getString(R.string.btnStartLbl));
             btnStartStop.setOnClickListener(new StartOnClickListener());
         }

@@ -11,9 +11,9 @@ public class WorkSession {
     private DateTime start;
     private DateTime end;
 
-    public WorkSession(DateTime end, DateTime start) {
-        this.end = end;
+    public WorkSession(DateTime start, DateTime end) {
         this.start = start;
+        this.end = end;
     }
 
     public Duration getDuration() {
