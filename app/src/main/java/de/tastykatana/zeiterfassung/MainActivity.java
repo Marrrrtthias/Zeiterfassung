@@ -2,10 +2,13 @@ package de.tastykatana.zeiterfassung;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
+
+import org.joda.time.DateTime;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
@@ -21,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
         btnExport = (Button) findViewById(R.id.btnExport);
         chckbxCorrectTimes = (CheckBox) findViewById(R.id.chckbxCorrectTimes);
 
-        btnStartStop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "clicked start/stop", Toast.LENGTH_SHORT).show();
-                // TODO start or stop Zeiterfassung
-            }
-        });
-
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,5 +31,40 @@ public class MainActivity extends AppCompatActivity {
                 // TODO trigger file export
             }
         });
+
+        // check if Zeiterfassung is running and set appropriate OnClickListener for btnStartStop
+        if (MyApp.zeiterfassung.isRunning()) {
+            btnStartStop.setOnClickListener(new StopOnClickListener());
+            btnStartStop.setText(getString(R.string.btnStopLbl));
+        } else {
+            btnStartStop.setOnClickListener(new StartOnClickListener());
+            btnStartStop.setText(getString(R.string.btnStartLbl));
+        }
+    }
+
+    // OnClickListener to start the Zeiterfassung, set correct label for btnStartStop and activate StopOnclickListener
+    class StartOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            MyApp.zeiterfassung.start();
+            Log.d("zeiterfassung", "zeiterfassung started at " + DateTime.now().toString());
+            btnStartStop.setText(getString(R.string.btnStopLbl));
+            btnStartStop.setOnClickListener(new StopOnClickListener());
+        }
+    }
+
+    // OnClickListener to stop the Zeiterfassung, set correct label for btnStartStop and activate StartOnclickListener
+    class StopOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            MyApp.zeiterfassung.stop();
+            Log.d("zeiterfassung", "zeiterfassung stopped at " + DateTime.now().toString());
+            btnStartStop.setText(getString(R.string.btnStartLbl));
+            btnStartStop.setOnClickListener(new StartOnClickListener());
+        }
     }
 }
+
+
