@@ -1,5 +1,7 @@
 package de.tastykatana.zeiterfassung;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import org.joda.time.DateTime;
@@ -13,15 +15,19 @@ import java.util.Map;
  */
 
 public class Zeiterfassung {
+    private SQLiteDatabase database;
     private DateTime runningSince;    // when was the zeiterfassung last started? null if not running
-    private Map<DateTime, List<WorkSession>> sessionsMap;
+    private Context context;
 
-    public Zeiterfassung(long runningSinceMillis) {
+    public Zeiterfassung(long runningSinceMillis, Context context) {
         if (runningSinceMillis == 0) {
             runningSince = null;
         } else {
             runningSince = new DateTime(runningSinceMillis);
         }
+        this.context = context;
+        database = (new MyDatabaseHelper(context)).getWritableDatabase();
+        Log.d("zeiterfassung", "object constructed. running since " + (new DateTime(runningSinceMillis)).toString());
     }
 
     public boolean isRunning() {
@@ -36,7 +42,7 @@ public class Zeiterfassung {
             return;
         }
         runningSince = DateTime.now();
-        // TODO update runningSince preference
+        MyApp.setRunningSincePref(runningSince);
         Log.d("zeiterfassung", "zeiterfassung started at " + DateTime.now().toString());
     }
 
@@ -44,18 +50,15 @@ public class Zeiterfassung {
      * stops the Zeiterfassung and archives the WorkSession, does nothing if not running
      */
     public void stop() {
+        // do nothing if Zeiterfassung hasn't been started
         if (runningSince == null) {
             return;
         }
 
-        if (sessionsMap.containsKey(getDayStart(runningSince))) {
-            sessionsMap.get(getDayStart(runningSince)).add(new WorkSession(runningSince, DateTime.now()));
-        } else {
-            List<WorkSession> list = new LinkedList<>();
-            list.add(new WorkSession(runningSince, DateTime.now()));
-            sessionsMap.put(getDayStart(runningSince), list);
-        }
+        MyDatabaseHelper.addWorkSession(new WorkSession(runningSince, DateTime.now()), database);
+
         runningSince = null;
+        MyApp.setRunningSincePref(new DateTime(0));
         Log.d("zeiterfassung", "zeiterfassung stopped at " + DateTime.now().toString());
     }
 

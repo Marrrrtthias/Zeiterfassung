@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import org.joda.time.DateTime;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -15,10 +17,12 @@ import java.io.IOException;
 public class MyApp extends Application {
     public static final String SAVEFILENAME = "savefile";
     public static final String PREFERENCES = "de.tastykatana.zeiterfassung";
+    public static final String RUNNING_SINCE_PREF_KEY = "zeiterfassungrunningsince";
 
-    private File savefile;
+    private File savefile;  // TODO cleanup savefile remaints
 
     public static Zeiterfassung zeiterfassung;
+    private static SharedPreferences prefs;
 
     @Override
     public void onCreate() {
@@ -33,9 +37,9 @@ public class MyApp extends Application {
     }
 
     private void initializeRunningSince() {
-        SharedPreferences prefs = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
-        long runningSinceMillis = prefs.getLong("runningSinceMillis", 0);
-        zeiterfassung = new Zeiterfassung(runningSinceMillis);
+        prefs = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        long runningSinceMillis = prefs.getLong(RUNNING_SINCE_PREF_KEY, 0);
+        zeiterfassung = new Zeiterfassung(runningSinceMillis, this);
         Log.d("startup","zeiterfassung-instance created");
     }
 
@@ -53,5 +57,9 @@ public class MyApp extends Application {
             Log.d("startup","savefile already exists");
         }
         return safefile;
+    }
+
+    public static void setRunningSincePref(DateTime runningSince) {
+        prefs.edit().putLong(RUNNING_SINCE_PREF_KEY, runningSince.getMillis()).apply();
     }
 }
