@@ -9,9 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
-    private static final String TABLE_NAME_SESSIONS = "sessions";
-    private static final String COLUMN_START = "start";
-    private static final String COLUMN_END = "end";
+    public static final String TABLE_NAME_SESSIONS = "sessions";
+    public static final String COLUMN_START = "start";
+    public static final String COLUMN_END = "end";
 
     private static final String DATABASE_NAME = "sessions.db";
     private static final int DATABASE_VERSION = 1;

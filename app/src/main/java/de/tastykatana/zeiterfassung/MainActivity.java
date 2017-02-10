@@ -1,5 +1,6 @@
 package de.tastykatana.zeiterfassung;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "clicked export", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), ShowSessionsActivity.class);
+                startActivity(intent);
                 // TODO trigger file export
             }
         });

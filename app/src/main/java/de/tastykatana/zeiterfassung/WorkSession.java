@@ -16,6 +16,10 @@ public class WorkSession {
         this.end = end;
     }
 
+    public WorkSession(long startMillis, long endMillis) {
+        this(new DateTime(startMillis), new DateTime(endMillis));
+    }
+
     public Duration getDuration() {
         return new Duration(start, end);
     }
@@ -26,6 +30,11 @@ public class WorkSession {
 
     public DateTime getEnd() {
         return end;
+    }
+
+    @Override
+    public String toString() {
+        return "start: " + start.toString() + ", end: " + end.toString();
     }
 
 }
