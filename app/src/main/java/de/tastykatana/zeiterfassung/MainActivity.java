@@ -42,12 +42,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        // TODO write Zeiterfassungsdata to storage
     }
 
     // OnClickListener to start the Zeiterfassung, set correct label for btnStartStop and activate StopOnclickListener
-    class StartOnClickListener implements View.OnClickListener {
+    private class StartOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {

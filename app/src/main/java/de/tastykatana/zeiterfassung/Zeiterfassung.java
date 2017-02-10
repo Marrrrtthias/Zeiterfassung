@@ -6,10 +6,6 @@ import android.util.Log;
 
 import org.joda.time.DateTime;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by matthias on 08.02.17.
  */
@@ -17,7 +13,6 @@ import java.util.Map;
 public class Zeiterfassung {
     private SQLiteDatabase database;
     private DateTime runningSince;    // when was the zeiterfassung last started? null if not running
-    private Context context;
 
     public Zeiterfassung(long runningSinceMillis, Context context) {
         if (runningSinceMillis == 0) {
@@ -25,7 +20,6 @@ public class Zeiterfassung {
         } else {
             runningSince = new DateTime(runningSinceMillis);
         }
-        this.context = context;
         database = (new MyDatabaseHelper(context)).getWritableDatabase();
         Log.d("zeiterfassung", "object constructed. running since " + (new DateTime(runningSinceMillis)).toString());
     }
