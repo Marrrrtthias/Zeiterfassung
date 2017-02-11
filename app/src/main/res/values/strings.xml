@@ -5,4 +5,5 @@
     <string name="btnExportLbl">Exportiere Stundenzettel</string>
     <string name="chckbxCorrectTimesLbl">Korrigiere Start- und Endzeiten</string>
     <string name="strNoSessionsRecorded">Bisher noch keine Arbeitszeiten aufgezeichnet.</string>
+    <string name="txtViewLicensesLbl">Lizenzen</string>
 </resources>

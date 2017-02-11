@@ -36,4 +36,13 @@
         android:layout_below="@+id/btnStartStop"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:text="@string/txtViewLicensesLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/txtViewLicenses" />
+
 </RelativeLayout>

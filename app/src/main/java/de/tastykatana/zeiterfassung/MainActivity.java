@@ -6,12 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
     private Button btnExport;
     private CheckBox chckbxCorrectTimes;
+    private TextView txtViewLicences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnStartStop = (Button) findViewById(R.id.btnStartStop);
         btnExport = (Button) findViewById(R.id.btnExport);
         chckbxCorrectTimes = (CheckBox) findViewById(R.id.chckbxCorrectTimes);
+        txtViewLicences = (TextView) findViewById(R.id.txtViewLicenses);
 
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ShowSessionsActivity.class);
                 startActivity(intent);
                 // TODO trigger file export
+            }
+        });
+
+        txtViewLicences.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new LibsBuilder().withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                        .start(getApplicationContext());
             }
         });
 
