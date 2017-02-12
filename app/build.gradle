@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "de.tastykatana.zeiterfassung"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -17,11 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/DEPENDENCIES'
-    }
 }
 
 dependencies {
@@ -31,8 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'joda-time:joda-time:2.9.7'
-    compile 'org.apache.pdfbox:pdfbox:2.0.4'
-    compile 'commons-logging:commons-logging-api:1.1'
     compile('com.mikepenz:aboutlibraries:5.9.1@aar') {
         transitive = true
     }

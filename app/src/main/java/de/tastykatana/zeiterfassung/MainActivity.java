@@ -1,6 +1,7 @@
 package de.tastykatana.zeiterfassung;
 
 import android.content.Intent;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ShowSessionsActivity.class);
                 startActivity(intent);
-                // TODO trigger file export
+                exportStundenzettel();
             }
         });
 
@@ -52,6 +56,19 @@ public class MainActivity extends AppCompatActivity {
         } else {
             btnStartStop.setOnClickListener(new StartOnClickListener());
             btnStartStop.setText(getString(R.string.btnStartLbl));
+        }
+    }
+
+    private void exportStundenzettel() {
+        PdfDocument doc = new PdfDocument();
+        doc.close();
+
+        try {
+            File cacheDir = this.getCacheDir();
+            File file = File.createTempFile("Stundenzettel", "pdf", cacheDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, R.string.stundenzettelExportFailed, Toast.LENGTH_SHORT).show();
         }
     }
 

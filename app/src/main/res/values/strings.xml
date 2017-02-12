@@ -6,4 +6,5 @@
     <string name="chckbxCorrectTimesLbl">Korrigiere Start- und Endzeiten</string>
     <string name="strNoSessionsRecorded">Bisher noch keine Arbeitszeiten aufgezeichnet.</string>
     <string name="txtViewLicensesLbl">Lizenzen</string>
+    <string name="stundenzettelExportFailed">Da ist wohl was schief gelaufen :(</string>
 </resources>
