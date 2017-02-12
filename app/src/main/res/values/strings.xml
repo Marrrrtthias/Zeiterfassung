@@ -7,4 +7,5 @@
     <string name="strNoSessionsRecorded">Bisher noch keine Arbeitszeiten aufgezeichnet.</string>
     <string name="txtViewLicensesLbl">Lizenzen</string>
     <string name="stundenzettelExportFailed">Da ist wohl was schief gelaufen :(</string>
+    <string name="stundenzettel_headline">Stundenzettel</string>
 </resources>
