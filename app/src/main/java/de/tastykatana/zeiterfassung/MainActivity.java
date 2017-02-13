@@ -1,10 +1,15 @@
 package de.tastykatana.zeiterfassung;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -115,6 +120,44 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.delete_database:
+                // create AlertDialog to ask if user really wants to delete everything
+                AlertDialog.Builder dbDeleteDialogBuilder = new AlertDialog.Builder(this);
+                dbDeleteDialogBuilder.setTitle(R.string.delete_data_dialog_title)
+                        .setMessage(R.string.delete_data_dialog_message);
+                // add buttons to dialog
+                dbDeleteDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button, delete all data from sessions table
+                        MyApp.zeiterfassung.deleteAll();
+                    }
+                });
+                dbDeleteDialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog, do nothing
+                    }
+                });
+
+                // show AlertDialog
+                dbDeleteDialogBuilder.show();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // OnClickListener to start the Zeiterfassung, set correct label for btnStartStop and activate StopOnclickListener

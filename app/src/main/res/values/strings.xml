@@ -5,7 +5,12 @@
     <string name="btnExportLbl">Exportiere Stundenzettel</string>
     <string name="chckbxCorrectTimesLbl">Korrigiere Start- und Endzeiten</string>
     <string name="strNoSessionsRecorded">Bisher noch keine Arbeitszeiten aufgezeichnet.</string>
-    <string name="txtViewLicensesLbl">Lizenzen</string>
+    <string name="txtViewAboutLbl">Über diese App</string>
     <string name="stundenzettelExportFailed">Da ist wohl was schief gelaufen :(</string>
     <string name="stundenzettel_headline">Stundenzettel</string>
+    <string name="menu_title_delete_database">Datenbank löschen</string>
+    <string name="delete_data_dialog_message">Wirklich alle Daten löschen?\nDiese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_data_dialog_title">Daten löschen</string>
+    <string name="yes">Ja</string>
+    <string name="cancel">Abbrechen</string>
 </resources>

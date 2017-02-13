@@ -82,4 +82,9 @@ public class Zeiterfassung {
     public DateTime getRunningSince() {
         return runningSince;
     }
+
+    public void deleteAll() {
+        database.execSQL("delete from " + MyDatabaseHelper.TABLE_NAME_SESSIONS);
+        Log.d("zeiterfassung", "deleted all contents from table '" + MyDatabaseHelper.TABLE_NAME_SESSIONS + "'");
+    }
 }
