@@ -13,4 +13,6 @@
     <string name="delete_data_dialog_title">Daten löschen</string>
     <string name="yes">Ja</string>
     <string name="cancel">Abbrechen</string>
+    <string name="permission_explanation_title">Speicherzugriff</string>
+    <string name="permissions_explanation_content">Diese App benötigt Zugriff auf den Gerätespeicher um die Arbeitszeiten zu exportieren.\nWenn du den Zugriff verweigerst kasst du zwar weiterhin Arbeitszeiten aufzeichnen, jedoch keinen Stundenzettel exportieren.</string>
 </resources>

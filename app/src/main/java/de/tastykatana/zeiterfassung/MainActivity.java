@@ -1,11 +1,17 @@
 package de.tastykatana.zeiterfassung;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnExport;
     private CheckBox chckbxCorrectTimes;
     private TextView txtViewLicences;
+    final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,27 @@ public class MainActivity extends AppCompatActivity {
             btnStartStop.setOnClickListener(new StartOnClickListener());
             btnStartStop.setText(getString(R.string.btnStartLbl));
         }
+
+        // check for storage permission
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            final AlertDialog.Builder explanation = new AlertDialog.Builder(this);
+            explanation.setTitle(R.string.permission_explanation_title);
+            explanation.setMessage(R.string.permissions_explanation_content);
+            explanation.setCancelable(true);
+            explanation.setPositiveButton("OK", null);
+            explanation.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                }
+            });
+            explanation.show();
+        }
+
     }
 
     /**
@@ -103,10 +131,12 @@ public class MainActivity extends AppCompatActivity {
         doc.finishPage(page);
 
         // write the document content to storage
-        File outFile = new File(this.getFilesDir(), "test.pdf");
+        File sdCard = Environment.getExternalStorageDirectory();
+        File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", "test.pdf");
         outFile.getParentFile().mkdirs();
         try {
             doc.writeTo(new FileOutputStream(outFile));
+            Log.d("export", "file '" + outFile.getName() + "' saved in '" + outFile.getAbsolutePath() + "'");
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, R.string.stundenzettelExportFailed, Toast.LENGTH_SHORT).show();

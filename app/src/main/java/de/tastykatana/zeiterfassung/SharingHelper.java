@@ -14,7 +14,7 @@ import java.io.File;
 public class SharingHelper {
 
     public static void sharePdf(File pdf, Context context) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("application/pdf");
 
         Uri uri = Uri.parse("file://" + pdf.getAbsolutePath());
