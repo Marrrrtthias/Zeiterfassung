@@ -1,4 +1,4 @@
-package de.tastykatana.zeiterfassung;
+package de.tastykatana.zeiterfassung.activity;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -28,6 +28,10 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import de.tastykatana.zeiterfassung.MyApp;
+import de.tastykatana.zeiterfassung.R;
+import de.tastykatana.zeiterfassung.SharingHelper;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;

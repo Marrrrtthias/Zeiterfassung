@@ -1,11 +1,14 @@
-package de.tastykatana.zeiterfassung;
+package de.tastykatana.zeiterfassung.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.SortedSet;
-import java.util.TreeSet;
+
+import de.tastykatana.zeiterfassung.MyApp;
+import de.tastykatana.zeiterfassung.R;
+import de.tastykatana.zeiterfassung.WorkSession;
 
 public class ShowSessionsActivity extends AppCompatActivity {
 
