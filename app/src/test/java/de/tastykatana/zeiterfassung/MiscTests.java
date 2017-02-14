@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -34,7 +35,12 @@ public class MiscTests {
         end = DateTime.now();
         WorkSession session2 = new WorkSession(start, end);
 
-        workday.addSession(session2);
+        // session2 is on same day as workday, should be added to it
+        assertTrue(workday.addSession(session2));
+
+        WorkSession session3 = new WorkSession(DateTime.now().plusDays(2), DateTime.now().plusDays(3));
+        // session 3 is not on the same day as workday; should not be added
+        assertFalse(workday.addSession(session3));
 
         System.out.println("workday duration: " + workday.getDuration().getMillis());
         System.out.println("session1 duration: " + session1.getDuration().getMillis());
