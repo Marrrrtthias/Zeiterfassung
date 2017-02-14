@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import org.joda.time.DateTime;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -108,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
         // start a page
         PdfDocument.Page page = doc.startPage(pageInfo);
 
-        // assemble Layout for Stundenzettel
-        ViewGroup stundenzettel = MyApp.zeiterfassung.buildStundenzettel(this);
+        // assemble Layout for Stundenzettel TODO add option to export Stundenzettel for another than the current month
+        ViewGroup stundenzettel = MyApp.zeiterfassung.buildStundenzettelForMonth(this, DateTime.now());
 
         // do some magic and draw the main layout to the page
         int measuredWidth = View.MeasureSpec.makeMeasureSpec(575, View.MeasureSpec.EXACTLY);

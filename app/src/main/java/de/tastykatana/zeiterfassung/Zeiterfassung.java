@@ -8,10 +8,14 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -94,20 +98,89 @@ public class Zeiterfassung {
         Log.d("zeiterfassung", "deleted all contents from table '" + MyDatabaseHelper.TABLE_NAME_SESSIONS + "'");
     }
 
-    public ViewGroup buildStundenzettel(Context context) {
+    /**
+     * builds a formatted Stundenzettel for the specified month
+     *
+     * @param context
+     * @param month all WorkSessions in the same mont as this DateTime are added to the returned Stundenzettel
+     * @return
+     */
+    public ViewGroup buildStundenzettelForMonth(Context context, DateTime month) {
         // create main layout for document (this is drawn to the page in the end
         LinearLayout result = new LinearLayout(context);
         result.setOrientation(LinearLayout.VERTICAL);
 
-        // create headline for Document and addSession to main layout
+        // create headline for Document
         TextView headline = new TextView(context);
         headline.setText(context.getString(R.string.stundenzettel_headline));
         headline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
         result.addView(headline);
         headline.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        headline.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
-        // TODO
+        // insert spacer
+        Space spacer1 = new Space(context);
+        spacer1.setMinimumHeight(30);
+        result.addView(spacer1);
+
+        // make headline for Workday table
+        TextView tableHeadline = new TextView(context);
+        tableHeadline.setText(context.getString(R.string.stundenzettel_table_headline));
+        tableHeadline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
+        result.addView(tableHeadline);
+
+        // make Workday table
+        DateTime zettelStart = month.withMillisOfDay(0).withDayOfMonth(1);
+        DateTime zettelEnd = month.withMillisOfDay(DateTimeConstants.MILLIS_PER_DAY-1).dayOfMonth().withMaximumValue();
+        Map<DateTime, Workday> workdayMap = getWorkdayMap(zettelStart, zettelEnd);
+
+        // go through all days in the specified month and add them to the Stundenzettel
+        for (DateTime i = zettelStart; i.isBefore(zettelEnd) || i.equals(zettelEnd); i = i.dayOfMonth().addToCopy(1)) {
+            TextView workdayView = new TextView(context);
+            Workday currentWorkday = workdayMap.get(i);
+            if (currentWorkday == null) {
+                // no work was done on day i
+                workdayView.setText(i.toString("dd.MM.yyyy"));
+            } else {
+                workdayView.setText(currentWorkday.toFormattedString());
+            }
+            workdayView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
+            result.addView(workdayView);
+        }
+
+        // add another spacer
+        Space spacer2 = new Space(context);
+        spacer2.setMinimumHeight(30);
+        result.addView(spacer2);
+
+        // add signature field
+        TextView signatureLine = new TextView(context);
+        signatureLine.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
+        signatureLine.setText(context.getString(R.string.signature_line, DateTime.now().toString("dd.MM.yyyy")));
+        result.addView(signatureLine);
+        TextView signatureLabelling = new TextView(context);
+        signatureLabelling.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
+        signatureLabelling.setText(context.getString(R.string.signature_line_labelling));
+        result.addView(signatureLabelling);
+
+        return result;
+    }
+
+    private Map<DateTime,Workday> getWorkdayMap(DateTime start, DateTime end) {
+        Map<DateTime, Workday> result = new HashMap<>();
+
+        for (WorkSession session : getAllSessions()) {
+            // get the start of the day the session started on
+            DateTime sessionDay = session.getStart().withMillisOfDay(0);
+
+            // add session to result if it started in the specified time interval
+            if (session.getStart().isAfter(start) && session.getStart().isBefore(end)) {
+                if (result.get(sessionDay) == null) {
+                    result.put(sessionDay, new Workday(session));
+                } else {
+                    result.get(sessionDay).addSession(session);
+                }
+            }
+        }
 
         return result;
     }

@@ -1,6 +1,7 @@
 package de.tastykatana.zeiterfassung;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +17,11 @@ public class MiscTests {
     @Test
     public void getStartOfDay_isCorrect() throws Exception {
         assertEquals("might fail because of changed date", DateTime.now().withMillisOfDay(0).toString(), "2017-02-14T00:00:00.000+01:00");
+    }
+
+    @Test
+    public void getEndOfDay_isCorrect() throws Exception {
+        assertEquals("might fail because of changed date", DateTime.now().withMillisOfDay(DateTimeConstants.MILLIS_PER_DAY-1).toString(), "2017-02-14T23:59:59.999+01:00");
     }
 
     @Test

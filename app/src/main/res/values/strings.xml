@@ -15,4 +15,7 @@
     <string name="cancel">Abbrechen</string>
     <string name="permission_explanation_title">Speicherzugriff</string>
     <string name="permissions_explanation_content">Diese App benötigt Zugriff auf den Gerätespeicher um die Arbeitszeiten zu exportieren.\nWenn du den Zugriff verweigerst kasst du zwar weiterhin Arbeitszeiten aufzeichnen, jedoch keinen Stundenzettel exportieren.</string>
+    <string name="stundenzettel_table_headline">Datum\t\tStart\t\tEnde\t\tDauer</string>
+    <string name="signature_line_labelling">Datum\t\t\t\t\tUnterschrift Hilfskraft\t\t\t\t\t\t\tUnterschrift Vorgesetzte/-r</string>
+    <string name="signature_line">%s\t_____________________________________</string>
 </resources>

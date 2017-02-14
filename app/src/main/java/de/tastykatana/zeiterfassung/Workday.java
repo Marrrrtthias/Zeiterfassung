@@ -59,4 +59,8 @@ public class Workday {
     public DateTime getEnd() {
         return end;
     }
+
+    public String toFormattedString() {
+        return start.toString("dd.MM.yyyy") + "\t" + start.toString("HH:mm") + "\t" + end.toString("HH:mm") + "\t" + duration.getStandardHours() + ":" + duration.getStandardMinutes();
+    }
 }
