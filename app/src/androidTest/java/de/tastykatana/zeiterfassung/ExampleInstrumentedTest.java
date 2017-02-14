@@ -2,16 +2,13 @@ package de.tastykatana.zeiterfassung;
 
 import android.content.Context;
 import android.graphics.pdf.PdfDocument;
-import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.core.deps.guava.io.Files;
 import android.support.test.runner.AndroidJUnit4;
 import android.widget.TextView;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 

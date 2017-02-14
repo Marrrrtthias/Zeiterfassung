@@ -3,8 +3,6 @@ package de.tastykatana.zeiterfassung;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
-import java.util.Collection;
-
 /**
  * Created by matthias on 2/14/17.
  */
