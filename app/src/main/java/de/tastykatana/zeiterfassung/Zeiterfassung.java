@@ -98,7 +98,7 @@ public class Zeiterfassung {
         LinearLayout result = new LinearLayout(context);
         result.setOrientation(LinearLayout.VERTICAL);
 
-        // create headline for Document and add to main layout
+        // create headline for Document and addSession to main layout
         TextView headline = new TextView(context);
         headline.setText(context.getString(R.string.stundenzettel_headline));
         headline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);

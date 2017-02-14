@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder dbDeleteDialogBuilder = new AlertDialog.Builder(this);
                 dbDeleteDialogBuilder.setTitle(R.string.delete_data_dialog_title)
                         .setMessage(R.string.delete_data_dialog_message);
-                // add buttons to dialog
+                // addSession buttons to dialog
                 dbDeleteDialogBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK button, delete all data from sessions table
