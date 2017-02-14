@@ -12,14 +12,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -105,27 +104,16 @@ public class MainActivity extends AppCompatActivity {
         // start a page
         PdfDocument.Page page = doc.startPage(pageInfo);
 
-        // create main layout for document (this is drawn to the page in the end
-        LinearLayout mainLayout = new LinearLayout(this);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
-
-        // create headline for Document and add to main layout
-        TextView headline = new TextView(this);
-        headline.setText(getString(R.string.stundenzettel_headline));
-        headline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
-        mainLayout.addView(headline);
-        headline.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        headline.setGravity(View.TEXT_ALIGNMENT_CENTER);
-
-        // TODO add worktimes to mainLayout
+        // assemble Layout for Stundenzettel
+        ViewGroup stundezettel = MyApp.zeiterfassung.buildStundenzettel(this);
 
         // do some magic and draw the main layout to the page
         int measuredWidth = View.MeasureSpec.makeMeasureSpec(575, View.MeasureSpec.EXACTLY);
         int measuredHeight = View.MeasureSpec.makeMeasureSpec(822, View.MeasureSpec.EXACTLY);
-        mainLayout.measure(measuredWidth, measuredHeight);
-        mainLayout.layout(0, 0, mainLayout.getMeasuredWidth(), mainLayout.getMeasuredHeight());
+        stundezettel.measure(measuredWidth, measuredHeight);
+        stundezettel.layout(0, 0, stundezettel.getMeasuredWidth(), stundezettel.getMeasuredHeight());
         page.getCanvas().translate(20, 20);
-        mainLayout.draw(page.getCanvas());
+        stundezettel.draw(page.getCanvas());
 
         // finish the page
         doc.finishPage(page);

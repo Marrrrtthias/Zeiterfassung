@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.joda.time.DateTime;
 
@@ -86,5 +91,23 @@ public class Zeiterfassung {
     public void deleteAll() {
         database.execSQL("delete from " + MyDatabaseHelper.TABLE_NAME_SESSIONS);
         Log.d("zeiterfassung", "deleted all contents from table '" + MyDatabaseHelper.TABLE_NAME_SESSIONS + "'");
+    }
+
+    public ViewGroup buildStundenzettel(Context context) {
+        // create main layout for document (this is drawn to the page in the end
+        LinearLayout result = new LinearLayout(context);
+        result.setOrientation(LinearLayout.VERTICAL);
+
+        // create headline for Document and add to main layout
+        TextView headline = new TextView(context);
+        headline.setText(context.getString(R.string.stundenzettel_headline));
+        headline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
+        result.addView(headline);
+        headline.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        headline.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+        // TODO
+
+        return result;
     }
 }
