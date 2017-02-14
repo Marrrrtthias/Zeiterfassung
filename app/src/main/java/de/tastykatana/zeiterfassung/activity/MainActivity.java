@@ -109,15 +109,15 @@ public class MainActivity extends AppCompatActivity {
         PdfDocument.Page page = doc.startPage(pageInfo);
 
         // assemble Layout for Stundenzettel
-        ViewGroup stundezettel = MyApp.zeiterfassung.buildStundenzettel(this);
+        ViewGroup stundenzettel = MyApp.zeiterfassung.buildStundenzettel(this);
 
         // do some magic and draw the main layout to the page
         int measuredWidth = View.MeasureSpec.makeMeasureSpec(575, View.MeasureSpec.EXACTLY);
         int measuredHeight = View.MeasureSpec.makeMeasureSpec(822, View.MeasureSpec.EXACTLY);
-        stundezettel.measure(measuredWidth, measuredHeight);
-        stundezettel.layout(0, 0, stundezettel.getMeasuredWidth(), stundezettel.getMeasuredHeight());
+        stundenzettel.measure(measuredWidth, measuredHeight);
+        stundenzettel.layout(0, 0, stundenzettel.getMeasuredWidth(), stundenzettel.getMeasuredHeight());
         page.getCanvas().translate(20, 20);
-        stundezettel.draw(page.getCanvas());
+        stundenzettel.draw(page.getCanvas());
 
         // finish the page
         doc.finishPage(page);
