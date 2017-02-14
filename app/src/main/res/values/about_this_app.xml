@@ -21,8 +21,8 @@
     <!-- TODO update changelog -->
     <string name="aboutLibraries_description_special3_text">
         <![CDATA[
-        <i>Version 1.0</i><br />
-        - TODO <br />
+        <i>Version 0.2-alpha</i><br />
+        - es kann nun der Stundenzettel des aktuellen Monats exportiert werden <br />
         <br />
         <i>Version 0.1-alpha</i><br />
         - initial release
