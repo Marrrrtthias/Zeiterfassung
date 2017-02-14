@@ -18,12 +18,16 @@ public class MiscTests {
     }
 
     @Test
-    public void addSession_isCorrect() throws Exception {
+    public void workday_isCorrect() throws Exception {
         DateTime start = DateTime.now();
         Thread.sleep(1000);
         DateTime end = DateTime.now();
         WorkSession session1 = new WorkSession(start, end);
         Workday workday = new Workday(session1);
+
+        assertEquals(workday.getStart(), session1.getStart());
+        assertEquals(workday.getEnd(), session1.getEnd());
+        assertEquals(workday.getDuration(), session1.getDuration());
 
         start = DateTime.now();
         Thread.sleep(3000);
@@ -37,6 +41,8 @@ public class MiscTests {
         System.out.println("session2 duration: " + session2.getDuration().getMillis());
         System.out.println("sum of both sessions: " + session1.getDuration().plus(session2.getDuration()).getMillis());
 
-        assertTrue(workday.getDuration().equals(session1.getDuration().plus(session2.getDuration())));
+        assertEquals(workday.getDuration(), session1.getDuration().plus(session2.getDuration()));
+        assertEquals(workday.getStart(), session1.getStart());
+        assertEquals(workday.getEnd(), session2.getEnd());
     }
 }

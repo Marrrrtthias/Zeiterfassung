@@ -53,4 +53,12 @@ public class Workday {
     public Duration getDuration() {
         return duration;
     }
+
+    public DateTime getStart() {
+        return start;
+    }
+
+    public DateTime getEnd() {
+        return end;
+    }
 }
