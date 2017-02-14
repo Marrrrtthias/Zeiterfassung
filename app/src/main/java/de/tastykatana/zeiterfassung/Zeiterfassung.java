@@ -81,6 +81,7 @@ public class Zeiterfassung {
             result.add(new WorkSession(startMillis, endMillis));
         }
 
+        cursor.close();
         return result;
     }
 
