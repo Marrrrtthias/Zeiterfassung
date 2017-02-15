@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_category_export_title">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/correct_start_end_preference_title"
+            android:summary="@string/correct_start_end_preference_summary"
+            android:key="@string/correct_start_end_preference_key" />
+        <EditTextPreference
+            android:defaultValue="John Doe"
+            android:title="@string/user_name_preference_title"
+            android:key="@string/user_name_preference_key" />
+        <EditTextPreference
+            android:defaultValue=""
+            android:title="@string/job_name_preference_title"
+            android:key="@string/job_name_preference_key" />
+    </PreferenceCategory>
+</PreferenceScreen>

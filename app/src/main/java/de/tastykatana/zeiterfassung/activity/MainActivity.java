@@ -38,7 +38,6 @@ import de.tastykatana.zeiterfassung.SharingHelper;
 public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
     private Button btnExport;
-    private CheckBox chckbxCorrectTimes;
     private TextView txtViewLicences;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 2;
 
@@ -49,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnStartStop = (Button) findViewById(R.id.btnStartStop);
         btnExport = (Button) findViewById(R.id.btnExport);
-        chckbxCorrectTimes = (CheckBox) findViewById(R.id.chckbxCorrectTimes);
         txtViewLicences = (TextView) findViewById(R.id.txtViewLicenses);
 
         btnExport.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
                 // show AlertDialog
                 dbDeleteDialogBuilder.show();
 
+                return true;
+            case R.id.menu_entry_settings:
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

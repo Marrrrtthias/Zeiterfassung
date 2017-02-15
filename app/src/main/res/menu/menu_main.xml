@@ -4,5 +4,9 @@
     <item android:id="@+id/delete_database"
         android:title="@string/menu_title_delete_database"
         app:showAsAction="never"/>
+    <item android:id="@+id/menu_entry_settings"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_settings_black_24px" />
 
 </menu>

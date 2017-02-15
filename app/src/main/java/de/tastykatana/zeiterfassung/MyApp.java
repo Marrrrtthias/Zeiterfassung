@@ -3,6 +3,7 @@ package de.tastykatana.zeiterfassung;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.joda.time.DateTime;
@@ -21,6 +22,9 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // initialize all settings in preferences.xml with default values on first launch
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         initializeRunningSince();
     }

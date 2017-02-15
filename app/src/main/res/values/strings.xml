@@ -18,4 +18,13 @@
     <string name="stundenzettel_table_headline">Datum\t\tStart\t\tEnde\t\tDauer</string>
     <string name="signature_line_labelling">Datum\t\t\t\t\tUnterschrift Hilfskraft\t\t\t\t\t\t\tUnterschrift Vorgesetzte/-r</string>
     <string name="signature_line">%s\t_____________________________________</string>
+    <string name="settings">Einstellungen</string>
+    <string name="correct_start_end_preference_title">Korrigiere Start- und Endzeiten</string>
+    <string name="correct_start_end_preference_summary">Geringfügig Beschäftigte dürfen nur an Werktagen von 6 bis 23 Uhr arbeiten, mit dieser Einstellung werden die exportierten Stundenzettel dahingehend \"beschönigt\".</string>
+    <string name="correct_start_end_preference_key">de.tastykatana.zeiterfassung.correctstartendtimespreferencekey</string>
+    <string name="pref_category_export_title">Stundenzettelexport</string>
+    <string name="user_name_preference_title">Name</string>
+    <string name="user_name_preference_key">de.tastykatana.zeiterfassung.usernamepreferencekey</string>
+    <string name="job_name_preference_key">de.tastykatana.zeiterfassung.jobnamepreferencekey</string>
+    <string name="job_name_preference_title">Jobbeschreibung</string>
 </resources>
