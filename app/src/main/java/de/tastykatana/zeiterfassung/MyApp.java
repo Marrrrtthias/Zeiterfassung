@@ -30,7 +30,7 @@ public class MyApp extends Application {
     }
 
     private void initializeRunningSince() {
-        prefs = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         long runningSinceMillis = prefs.getLong(RUNNING_SINCE_PREF_KEY, 0);
         zeiterfassung = new Zeiterfassung(runningSinceMillis, this);
         Log.d("startup","zeiterfassung-instance created");
@@ -38,5 +38,9 @@ public class MyApp extends Application {
 
     public static void setRunningSincePref(DateTime runningSince) {
         prefs.edit().putLong(RUNNING_SINCE_PREF_KEY, runningSince.getMillis()).apply();
+    }
+
+    public static SharedPreferences getPrefs() {
+        return prefs;
     }
 }

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * exports the Stundenzettel to /data/data/de.tastykatana.zeiterfassung/files/test.pdf
+     * exports a Stundenzettel for the current month to /Documents/Stundenzettel
      */
     private void exportStundenzettel() {
         PdfDocument doc = new PdfDocument();
@@ -124,7 +124,12 @@ public class MainActivity extends AppCompatActivity {
 
         // write the document content to storage
         File sdCard = Environment.getExternalStorageDirectory();
-        File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", "test.pdf");
+        String fileName = "Stundenzettel_"
+                            + DateTime.now().toString("MM.yyyy") + "_"
+                            + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
+                            + MyApp.getPrefs().getString(getString(R.string.job_name_preference_key), "")
+                            + ".pdf";
+        File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName);
         outFile.getParentFile().mkdirs();
         try {
             doc.writeTo(new FileOutputStream(outFile));
