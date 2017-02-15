@@ -3,6 +3,7 @@ package de.tastykatana.zeiterfassung;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -116,6 +117,24 @@ public class Zeiterfassung {
         headline.setTextSize(TypedValue.COMPLEX_UNIT_PX, 24);
         result.addView(headline);
         headline.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        // add name and jobdescription
+        TextView userAndJobname = new TextView(context);
+        StringBuilder content = new StringBuilder();
+        // append username
+        content.append(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.user_name_preference_key), null));
+        content.append("\t\t\t");
+        // append jobname
+        content.append(PreferenceManager.getDefaultSharedPreferences(context).getString(context.getString(R.string.job_name_preference_key), null));
+        userAndJobname.setText(content.toString());
+        userAndJobname.setTextSize(TypedValue.COMPLEX_UNIT_PX, 12);
+        result.addView(userAndJobname);
+
+        // add timeframe
+        TextView timeFrame = new TextView(context);
+        timeFrame.setText(context.getString(R.string.timeframe) + ": " + month.toString("MM.yyyy"));
+        timeFrame.setTextSize(TypedValue.COMPLEX_UNIT_PX, 12);
+        result.addView(timeFrame);
 
         // insert spacer
         Space spacer1 = new Space(context);
