@@ -29,4 +29,6 @@
     <string name="job_name_preference_title">Jobbeschreibung</string>
     <string name="timeframe">Zeitrahmen</string>
     <string name="pick_month">Monat auswählen</string>
+    <string name="share">Teilen</string>
+    <string name="file_exported_snackbar">Datei gespeichert als %s</string>
 </resources>

@@ -3,10 +3,13 @@ package de.tastykatana.zeiterfassung.activity;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnStartStop;
     private Button btnExport;
     private TextView txtViewLicences;
+    private CoordinatorLayout coordLayout;
     final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 2;
 
     @Override
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btnStartStop = (Button) findViewById(R.id.btnStartStop);
         btnExport = (Button) findViewById(R.id.btnExport);
         txtViewLicences = (TextView) findViewById(R.id.txtViewLicenses);
+        coordLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
 
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,19 +145,25 @@ public class MainActivity extends AppCompatActivity {
                             + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.job_name_preference_key), "")
                             + ".pdf";
-        File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName);
+        final File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName);
         outFile.getParentFile().mkdirs();
         try {
             doc.writeTo(new FileOutputStream(outFile));
             Log.d("export", "file '" + outFile.getName() + "' saved in '" + outFile.getAbsolutePath() + "'");
+            Snackbar.make(coordLayout, getString(R.string.file_exported_snackbar, outFile.getAbsolutePath()), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.share, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            SharingHelper.sharePdf(outFile, MainActivity.this);
+                        }
+                    })
+                    .show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, R.string.stundenzettelExportFailed, Toast.LENGTH_SHORT).show();
         }
 
         doc.close();
-
-        SharingHelper.sharePdf(outFile, this);
     }
 
     @Override
