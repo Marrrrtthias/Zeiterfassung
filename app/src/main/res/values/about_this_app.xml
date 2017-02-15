@@ -2,7 +2,20 @@
 <resources>
     <string name="aboutLibraries_description_showIcon">true</string>
     <string name="aboutLibraries_description_showVersion">true</string>
-    <string name="aboutLibraries_description_text"><![CDATA[©<a href="mailto:matthiasgellrichdev@gmail.com?Subject=Zeiterfassung">Matthias Gellrich</a> 2017]]></string>
+    <string name="aboutLibraries_description_text">
+        <![CDATA[
+        ©Matthias Gellrich 2017<br>
+        <br>
+        <i>Quelltext</i><br>
+        <a href="https://github.com/Marrrrtthias/Zeiterfassung">GitHub</a><br>
+        <br>
+        <i>Einen Fehler melden</i><br>
+        <a href="https://github.com/Marrrrtthias/Zeiterfassung/issues">GitHub issue-tracker</a><br>
+        <br>
+        <i>Rezension schreiben</i><br>
+        <a href="https://play.google.com/store/apps/details?id=de.tastykatana.zeiterfassung">Google Play</a>
+        ]]>
+    </string>
 
     <!-- Just remove those entries if you don't want to use a special button with a text within your about this app view :D -->
     <string name="aboutLibraries_description_special1_name">Datenschutz</string>
@@ -10,20 +23,17 @@
         <![CDATA[
         Diese App sammelt keine Nutzungsdaten, die nicht für den normalen Gebrauch nötig sind.<br>
         Außerdem werden keine der erfassten Daten an Dritte weitergegeben.<br>
+        <br>
         <i>Du kannst deinen Aluhut also wieder absetzen ;)</i>
         ]]>
-    </string>
-    <string name="aboutLibraries_description_special2_name">Open source</string>
-    <string name="aboutLibraries_description_special2_text">
-        <![CDATA[Diese App ist vollständig Open source, der Quelltext kann auf <a href="https://github.com/Marrrrtthias/Zeiterfassung">GitHub</a> eingesehen werden]]>
     </string>
     <string name="aboutLibraries_description_special3_name">Changelog</string>
     <!-- TODO update changelog -->
     <string name="aboutLibraries_description_special3_text">
         <![CDATA[
-        <i>Version 0.3-beta</i></br>
-        - in den Einstellungen können jetzt Name und Jobbeschreibung eingestellt werden, beides steht dann auch auf dem Stundenzettel</br>
-        - man kann nun auch den Stundenzettel für vergangene Monate exportieren</br>
+        <i>Version 0.3-beta</i><br>
+        - in den Einstellungen können jetzt Name und Jobbeschreibung eingestellt werden, beides steht dann auch auf dem Stundenzettel<br>
+        - man kann nun auch den Stundenzettel für vergangene Monate exportieren<br>
         <i>Version 0.2-alpha</i><br />
         - es kann nun der Stundenzettel des aktuellen Monats exportiert werden <br />
         <br />
