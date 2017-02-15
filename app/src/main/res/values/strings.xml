@@ -28,4 +28,5 @@
     <string name="job_name_preference_key">de.tastykatana.zeiterfassung.jobnamepreferencekey</string>
     <string name="job_name_preference_title">Jobbeschreibung</string>
     <string name="timeframe">Zeitrahmen</string>
+    <string name="pick_month">Monat auswählen</string>
 </resources>

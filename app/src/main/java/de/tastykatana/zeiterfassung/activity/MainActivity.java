@@ -53,9 +53,20 @@ public class MainActivity extends AppCompatActivity {
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowSessionsActivity.class);
-                startActivity(intent);
-                exportStundenzettel();
+                final DateTime[] monthArray = MyApp.zeiterfassung.getMonths();
+                String[] monthStringArray = new String[monthArray.length];
+                for(int i = 0; i<monthArray.length; i++) {
+                    monthStringArray[i] = monthArray[i].toString("MM.yyyy");
+                }
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(getString(R.string.pick_month))
+                        .setItems(monthStringArray, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                exportStundenzettel(monthArray[which]);
+                            }
+                        })
+                        .show();
             }
         });
 
@@ -101,14 +112,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * exports a Stundenzettel for the current month to /Documents/Stundenzettel
      */
-    private void exportStundenzettel() {
+    private void exportStundenzettel(DateTime month) {
         PdfDocument doc = new PdfDocument();
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
 
         // start a page
         PdfDocument.Page page = doc.startPage(pageInfo);
 
-        // assemble Layout for Stundenzettel TODO add option to export Stundenzettel for another than the current month
+        // assemble Layout for Stundenzettel
         ViewGroup stundenzettel = MyApp.zeiterfassung.buildStundenzettelForMonth(this, DateTime.now());
 
         // do some magic and draw the main layout to the page
@@ -125,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         // write the document content to storage
         File sdCard = Environment.getExternalStorageDirectory();
         String fileName = "Stundenzettel_"
-                            + DateTime.now().toString("MM.yyyy") + "_"
+                            + month.toString("MM.yyyy") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.job_name_preference_key), "")
                             + ".pdf";

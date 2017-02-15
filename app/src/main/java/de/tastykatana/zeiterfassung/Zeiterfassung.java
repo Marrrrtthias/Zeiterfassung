@@ -17,6 +17,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -210,5 +211,24 @@ public class Zeiterfassung {
         }
 
         return result;
+    }
+
+    /**
+     * builds a sorted Array with exactly one DateTime instance in each month that has recorded Worksessions in it
+     * @return
+     */
+    public DateTime[] getMonths() {
+        SortedSet<DateTime> resultSet = new TreeSet<>();
+
+        for (WorkSession session : getAllSessions()) {
+            DateTime month = getDayStart(session.getStart()).withDayOfMonth(1);
+            if (!resultSet.contains(month)) {
+                resultSet.add(month);
+            }
+        }
+
+        DateTime[] resultArray = new DateTime[resultSet.size()];
+        resultSet.toArray(resultArray);
+        return resultArray;
     }
 }
