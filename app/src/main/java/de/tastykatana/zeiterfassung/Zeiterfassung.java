@@ -3,6 +3,7 @@ package de.tastykatana.zeiterfassung;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
@@ -180,6 +181,13 @@ public class Zeiterfassung {
         signatureLabelling.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
         signatureLabelling.setText(context.getString(R.string.signature_line_labelling));
         result.addView(signatureLabelling);
+
+        // set textcolor to black
+        for (int i = 0; i<result.getChildCount(); i++) {
+            if(result.getChildAt(i) instanceof TextView) {
+                ((TextView) result.getChildAt(i)).setTextColor(Color.BLACK);
+            }
+        }
 
         return result;
     }
