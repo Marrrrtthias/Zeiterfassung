@@ -7,8 +7,8 @@ android {
         applicationId "de.tastykatana.zeiterfassung"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 4
-        versionName "v0.3-beta"
+        versionCode 5
+        versionName "v0.3.1-beta"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

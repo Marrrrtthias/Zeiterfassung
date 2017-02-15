@@ -31,6 +31,8 @@
     <!-- TODO update changelog -->
     <string name="aboutLibraries_description_special3_text">
         <![CDATA[
+        <i>Version 0.3.1-beta</i>
+        - bugfixes
         <i>Version 0.3-beta</i><br>
         - in den Einstellungen können jetzt Name und Jobbeschreibung eingestellt werden, beides steht dann auch auf dem Stundenzettel<br>
         - man kann nun auch den Stundenzettel für vergangene Monate exportieren<br>
