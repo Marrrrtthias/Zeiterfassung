@@ -217,7 +217,7 @@ public class Zeiterfassung {
             Workday currentWorkday = workdayMap.get(i);
             if (currentWorkday == null) {
                 // no work was done on day i
-                workdayView.setText(i.toString("dd.MM.yyyy"));
+                workdayView.setText(i.toString("dd.MM.yyyy   E"));
             } else {
                 workdayView.setText(currentWorkday.toFormattedString());
                 sumOfAllSessions = sumOfAllSessions.plus(currentWorkday.getDuration());
