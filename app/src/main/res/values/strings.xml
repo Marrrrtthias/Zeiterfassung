@@ -31,4 +31,9 @@
     <string name="pick_month">Monat auswählen</string>
     <string name="share">Teilen</string>
     <string name="file_exported_snackbar">Datei gespeichert als %s</string>
+    <string name="danger_zone_category_title">Danger Zone</string>
+    <string name="filepath_preference_title">Dateipfad für export</string>
+    <string name="filepath_preference_summary">ACHTUNG: Das Ändern dieser Einstellung kann zu Fehlverhalten führen. Bitte nur verändern wenn du weißt was du tust.</string>
+    <string name="filepath_preference_key">de.tastykatana.zeiterfassung.filepathforexport</string>
+    <string name="filepath_default_value">/Documents/Stundenzettel</string>
 </resources>

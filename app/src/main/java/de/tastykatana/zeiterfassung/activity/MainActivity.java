@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.job_name_preference_key), "")
                             + ".pdf";
-        final File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName); // TODO make path configurable
+        final File outFile = new File(MyApp.getPrefs().getString(getString(R.string.filepath_preference_key), getString(R.string.filepath_default_value)), fileName);
         outFile.getParentFile().mkdirs();
         try {
             doc.writeTo(new FileOutputStream(outFile));

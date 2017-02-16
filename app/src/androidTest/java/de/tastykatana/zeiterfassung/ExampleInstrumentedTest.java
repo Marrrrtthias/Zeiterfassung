@@ -29,30 +29,4 @@ public class ExampleInstrumentedTest {
 
         assertEquals("de.tastykatana.zeiterfassung", appContext.getPackageName());
     }
-    @Test
-    public void createPdf_isWorking() throws IOException {
-        // create a new document
-        PdfDocument document = new PdfDocument();
-
-        // crate a page description
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(100, 100, 1).create();
-
-        // start a page
-        PdfDocument.Page page = document.startPage(pageInfo);
-
-        // draw something on the page
-        TextView content = new TextView(getContext());
-        content.setText("hallo");
-        content.draw(page.getCanvas());
-
-        // finish the page
-        document.finishPage(page);
-
-        // write the document content
-        // TODO share to another app to view the created pdf
-        document.writeTo(new FileOutputStream(outFile));
-
-        // close the document
-        document.close();
-    }
 }
