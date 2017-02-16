@@ -156,7 +156,6 @@ public class Zeiterfassung {
 
     /**
      * builds a formatted Stundenzettel for the specified month
-     * TODO make correct start / end time setting work
      *
      * @param context
      * @param month all WorkSessions in the same mont as this DateTime are added to the returned Stundenzettel
