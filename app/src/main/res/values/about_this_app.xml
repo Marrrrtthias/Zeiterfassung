@@ -34,6 +34,7 @@
         <i>Version 0.4-beta</i><br>
         - der Dateipfad für den Stundenzettelexport kann nun in den Einstellungen geändert werden
         - auf dem exportierten Stundenzettel steht nun auch die Gesamtarbeitszeit für den Monat
+        - es wird nun eine Benachrichtigung angezeigt während die Zeiterfassung läuft
         <i>Version 0.3.1-beta</i><br>
         - bugfixes
         <i>Version 0.3-beta</i><br>

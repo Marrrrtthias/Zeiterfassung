@@ -37,4 +37,6 @@
     <string name="filepath_preference_key">de.tastykatana.zeiterfassung.filepathforexport</string>
     <string name="filepath_default_value">/Documents/Stundenzettel</string>
     <string name="time_sum_for_month">Gesamtzeit: %1$d:%2$d</string>
+    <string name="running_notification_title">Zeiterfassung läuft</string>
+    <string name="running_notification_text">Tippe hier um die App zu öffnen und die Zeiterfassung zu stoppen.</string>
 </resources>

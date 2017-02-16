@@ -1,10 +1,15 @@
 package de.tastykatana.zeiterfassung;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -25,20 +30,26 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import de.tastykatana.zeiterfassung.activity.MainActivity;
+
 /**
  * Created by matthias on 08.02.17.
  */
 
 public class Zeiterfassung {
+    private Context context;
+    private final int ERFASSUNG_RUNNING_NOTIFICATION_ID = 1;
     private MyDatabaseHelper dbHelper;
     private SQLiteDatabase database;
     private DateTime runningSince;    // when was the zeiterfassung last started? null if not running
 
     public Zeiterfassung(long runningSinceMillis, Context context) {
+        this.context = context;
         if (runningSinceMillis == 0) {
             runningSince = null;
         } else {
             runningSince = new DateTime(runningSinceMillis);
+            showRunningSinceNotification();
         }
         dbHelper = new MyDatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
@@ -59,6 +70,9 @@ public class Zeiterfassung {
         runningSince = DateTime.now();
         MyApp.setRunningSincePref(runningSince);
         Log.d("zeiterfassung", "zeiterfassung started at " + DateTime.now().toString());
+
+        // show notification
+        showRunningSinceNotification();
     }
 
     /**
@@ -75,6 +89,42 @@ public class Zeiterfassung {
         runningSince = null;
         MyApp.setRunningSincePref(new DateTime(0));
         Log.d("zeiterfassung", "zeiterfassung stopped at " + DateTime.now().toString());
+
+        // remove notification
+        removeRunningSinceNotification();
+    }
+
+    private void showRunningSinceNotification() {
+        NotificationCompat.Builder mBuilder = (new NotificationCompat.Builder(context)).setSmallIcon(R.drawable.ic_settings_black_24px)
+                .setContentTitle(context.getString(R.string.running_notification_title))
+                .setContentText(context.getString(R.string.running_notification_text))
+                .setOngoing(true);
+        // Creates an explicit intent for an Activity in your app
+        Intent resultIntent = new Intent(context, MainActivity.class);
+
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        // Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(MainActivity.class);
+        // Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        // the ID allows you to update the notification later on.
+        mNotificationManager.notify(ERFASSUNG_RUNNING_NOTIFICATION_ID, mBuilder.build());
+    }
+
+    private void removeRunningSinceNotification() {
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.cancel(ERFASSUNG_RUNNING_NOTIFICATION_ID);
     }
 
     private DateTime getDayStart(DateTime dt) {
