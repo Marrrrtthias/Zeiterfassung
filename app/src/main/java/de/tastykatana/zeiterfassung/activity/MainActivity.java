@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         doc.finishPage(page);
 
         // write the document content to storage
-        File sdCard = Environment.getExternalStorageDirectory();
         String fileName = "Stundenzettel_"
                             + month.toString("MM.yyyy") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
