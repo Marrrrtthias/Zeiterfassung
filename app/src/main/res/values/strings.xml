@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Zeiterfassung</string>
-    <string name="btnStartLbl">Starte Zeiterfassung</string>
-    <string name="btnStopLbl">Stoppe Zeiterfassung</string>
+    <string name="app_name">Stechuhr</string>
+    <string name="btnStartLbl">Stechuhr starten</string>
+    <string name="btnStopLbl">Stechuhr stoppen</string>
     <string name="btnExportLbl">Exportiere Stundenzettel</string>
     <string name="chckbxCorrectTimesLbl">Korrigiere Start- und Endzeiten</string>
     <string name="strNoSessionsRecorded">Bisher noch keine Arbeitszeiten aufgezeichnet.</string>
@@ -37,6 +37,6 @@
     <string name="filepath_preference_key">de.tastykatana.zeiterfassung.filepathforexport</string>
     <string name="filepath_default_value">/Documents/Stundenzettel</string>
     <string name="time_sum_for_month">Gesamtzeit: %1$d:%2$d</string>
-    <string name="running_notification_title">Zeiterfassung läuft</string>
-    <string name="running_notification_text">Tippe hier um die App zu öffnen und die Zeiterfassung zu stoppen.</string>
+    <string name="running_notification_title">Stechuhr läuft</string>
+    <string name="running_notification_text">Tippe hier um die App zu öffnen und die Stechuhr zu stoppen.</string>
 </resources>
