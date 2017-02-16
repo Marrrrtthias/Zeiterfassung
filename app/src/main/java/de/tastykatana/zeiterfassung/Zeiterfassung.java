@@ -103,6 +103,7 @@ public class Zeiterfassung {
 
     /**
      * builds a formatted Stundenzettel for the specified month
+     * TODO make correct start / end time setting work
      *
      * @param context
      * @param month all WorkSessions in the same mont as this DateTime are added to the returned Stundenzettel
@@ -167,6 +168,8 @@ public class Zeiterfassung {
             workdayView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
             result.addView(workdayView);
         }
+
+        // TODO Gesamtarbeitszeit hinzufügen
 
         // add another spacer
         Space spacer2 = new Space(context);

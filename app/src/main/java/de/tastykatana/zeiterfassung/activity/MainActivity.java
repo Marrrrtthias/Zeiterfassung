@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                             + MyApp.getPrefs().getString(getString(R.string.user_name_preference_key), "") + "_"
                             + MyApp.getPrefs().getString(getString(R.string.job_name_preference_key), "")
                             + ".pdf";
-        final File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName);
+        final File outFile = new File(sdCard.getAbsolutePath() + File.separator + "Documents" + File.separator + "Stundenzettel", fileName); // TODO make path configurable
         outFile.getParentFile().mkdirs();
         try {
             doc.writeTo(new FileOutputStream(outFile));
