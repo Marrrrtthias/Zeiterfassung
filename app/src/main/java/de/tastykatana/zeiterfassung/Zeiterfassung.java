@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.Duration;
+import org.joda.time.MutableInterval;
+import org.joda.time.MutablePeriod;
 
 import java.util.HashMap;
 import java.util.List;
@@ -155,6 +158,9 @@ public class Zeiterfassung {
         DateTime zettelEnd = month.withMillisOfDay(DateTimeConstants.MILLIS_PER_DAY-1).dayOfMonth().withMaximumValue();
         Map<DateTime, Workday> workdayMap = getWorkdayMap(zettelStart, zettelEnd);
 
+        // counts how much time was spent working over the whole month
+        Duration sumOfAllSessions = new Duration(0);
+
         // go through all days in the specified month and add them to the Stundenzettel
         for (DateTime i = zettelStart; i.isBefore(zettelEnd) || i.equals(zettelEnd); i = i.dayOfMonth().addToCopy(1)) {
             TextView workdayView = new TextView(context);
@@ -164,12 +170,17 @@ public class Zeiterfassung {
                 workdayView.setText(i.toString("dd.MM.yyyy"));
             } else {
                 workdayView.setText(currentWorkday.toFormattedString());
+                sumOfAllSessions = sumOfAllSessions.plus(currentWorkday.getDuration());
             }
             workdayView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
             result.addView(workdayView);
         }
 
-        // TODO Gesamtarbeitszeit hinzufügen
+        // add sum of all sessions in this month
+        TextView sessionSum = new TextView(context);
+        sessionSum.setTextSize(TypedValue.COMPLEX_UNIT_PX,12);
+        sessionSum.setText(context.getString(R.string.time_sum_for_month, sumOfAllSessions.getStandardHours(), sumOfAllSessions.getStandardMinutes()));
+        result.addView(sessionSum);
 
         // add another spacer
         Space spacer2 = new Space(context);
