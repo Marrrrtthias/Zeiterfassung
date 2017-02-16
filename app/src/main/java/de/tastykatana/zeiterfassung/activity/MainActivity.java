@@ -126,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
         PdfDocument.Page page = doc.startPage(pageInfo);
 
         // assemble Layout for Stundenzettel
-        ViewGroup stundenzettel = MyApp.zeiterfassung.buildStundenzettelForMonth(this, DateTime.now());
+        ViewGroup stundenzettel = MyApp.zeiterfassung
+                .buildStundenzettelForMonth(this, DateTime.now(), MyApp.getPrefs().getBoolean(getString(R.string.correct_start_end_preference_key), false));
 
         // do some magic and draw the main layout to the page
         int measuredWidth = View.MeasureSpec.makeMeasureSpec(575, View.MeasureSpec.EXACTLY);

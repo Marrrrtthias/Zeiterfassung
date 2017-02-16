@@ -17,6 +17,12 @@ public class Workday {
         duration = new Duration(start, end);
     }
 
+    private Workday(DateTime start, DateTime end, Duration duration) {
+        this.start = start;
+        this.end = end;
+        this.duration = duration;
+    }
+
     /**
      * adds a WorkSession to the Workday (adds duration of the session to Workdays duration and
      * updates start and end if necessary)
@@ -62,5 +68,32 @@ public class Workday {
 
     public String toFormattedString() {
         return start.toString("dd.MM.yyyy   E") + "\t" + start.toString("HH:mm") + "\t" + end.toString("HH:mm") + "\t" + duration.getStandardHours() + ":" + duration.getStandardMinutes();
+    }
+
+    public int getWeekday() {
+        return start.getDayOfWeek();
+    }
+
+    public String toFormattedString(boolean correctTimes) {
+        if (correctTimes) {
+            // only return date and weekday if this is a sunday
+            if (start.getDayOfWeek() == 7) {
+                return start.toString("dd.MM.yyyy   E");
+            }
+
+            Workday tunedWorkday;
+            // workday has illegal start time
+            if (start.getHourOfDay() < 6 || start.getHourOfDay() > 23 || (start.getHourOfDay()==23 && start.getMinuteOfHour()>0)) {
+                tunedWorkday = new Workday(start.withHourOfDay(6), start.withHourOfDay(6).plus(duration), duration);
+                return tunedWorkday.toFormattedString();
+            }
+            // workday has illegal end time
+            if (end.getHourOfDay() < 6 || end.getHourOfDay() > 23 || (end.getHourOfDay()==23 && end.getMinuteOfHour()>0)) {
+                tunedWorkday = new Workday(end.withHourOfDay(22).minus(duration), end.withHourOfDay(22), duration);
+                return tunedWorkday.toFormattedString();
+            }
+        }
+
+        return toFormattedString();
     }
 }

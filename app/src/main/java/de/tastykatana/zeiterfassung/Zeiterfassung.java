@@ -160,9 +160,11 @@ public class Zeiterfassung {
      *
      * @param context
      * @param month all WorkSessions in the same mont as this DateTime are added to the returned Stundenzettel
+     * @param correctTimes whether or not to cerrect the Working times so it appears as there was no work done
+     *                     on sundays or between 2300 and 0600
      * @return
      */
-    public ViewGroup buildStundenzettelForMonth(Context context, DateTime month) {
+    public ViewGroup buildStundenzettelForMonth(Context context, DateTime month, boolean correctTimes) {
         // create main layout for document (this is drawn to the page in the end
         LinearLayout result = new LinearLayout(context);
         result.setOrientation(LinearLayout.VERTICAL);
@@ -219,8 +221,11 @@ public class Zeiterfassung {
                 // no work was done on day i
                 workdayView.setText(i.toString("dd.MM.yyyy   E"));
             } else {
-                workdayView.setText(currentWorkday.toFormattedString());
-                sumOfAllSessions = sumOfAllSessions.plus(currentWorkday.getDuration());
+                workdayView.setText(currentWorkday.toFormattedString(correctTimes));
+                if (! (correctTimes && currentWorkday.getWeekday()==7)) {
+                    // do not add this day to the sum if times are to be corrected and it is on a sunday
+                    sumOfAllSessions = sumOfAllSessions.plus(currentWorkday.getDuration());
+                }
             }
             workdayView.setTextSize(TypedValue.COMPLEX_UNIT_PX, 8);
             result.addView(workdayView);
