@@ -32,11 +32,11 @@
     <string name="aboutLibraries_description_special3_text">
         <![CDATA[
         <i>Version 1.0-beta</i><br>
-        - die App heißt jetzt Stechuhr (danke anonymer Jodler für den Namensvorschlag)
-        - der Dateipfad für den Stundenzettelexport kann nun in den Einstellungen geändert werden
-        - auf dem exportierten Stundenzettel steht nun auch die Gesamtarbeitszeit für den Monat
-        - es wird nun eine Benachrichtigung angezeigt während die Stechuhr läuft
-        - weitere (kleinere) Änderungen am Stundenzettel
+        - die App heißt jetzt Stechuhr (danke anonymer Jodler für den Namensvorschlag)<br>
+        - der Dateipfad für den Stundenzettelexport kann nun in den Einstellungen geändert werden<br>
+        - auf dem exportierten Stundenzettel steht nun auch die Gesamtarbeitszeit für den Monat<br>
+        - es wird nun eine Benachrichtigung angezeigt während die Stechuhr läuft<br>
+        - weitere (kleinere) Änderungen am Stundenzettel<br>
         <i>Version 0.3.1-beta</i><br>
         - bugfixes
         <i>Version 0.3-beta</i><br>
