@@ -3,11 +3,6 @@
 
     <PreferenceCategory android:title="@string/pref_category_export_title">
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:title="@string/correct_start_end_preference_title"
-            android:summary="@string/correct_start_end_preference_summary"
-            android:key="@string/correct_start_end_preference_key" />
         <EditTextPreference
             android:defaultValue="John Doe"
             android:title="@string/user_name_preference_title"
@@ -25,5 +20,10 @@
             android:title="@string/filepath_preference_title"
             android:summary="@string/filepath_preference_summary"
             android:key="@string/filepath_preference_key" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:title="@string/correct_start_end_preference_title"
+            android:summary="@string/correct_start_end_preference_summary"
+            android:key="@string/correct_start_end_preference_key" />
     </PreferenceCategory>
 </PreferenceScreen>

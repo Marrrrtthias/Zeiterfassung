@@ -20,7 +20,7 @@
     <string name="signature_line">%s\t_____________________________________</string>
     <string name="settings">Einstellungen</string>
     <string name="correct_start_end_preference_title">Korrigiere Start- und Endzeiten</string>
-    <string name="correct_start_end_preference_summary">Geringfügig Beschäftigte dürfen nur an Werktagen von 6 bis 23 Uhr arbeiten, mit dieser Einstellung werden die exportierten Stundenzettel dahingehend \"beschönigt\".</string>
+    <string name="correct_start_end_preference_summary">Geringfügig Beschäftigte dürfen nur an Werktagen von 6 bis 23 Uhr arbeiten, mit dieser Einstellung werden die exportierten Stundenzettel dahingehend \"beschönigt\".\nACHTUNG: Diese Funktion ist experimentell und kann dazu führen, dass die Arbeitszeiten auf deinem Stundenzettel nicht stimmen. Jegliche Risiken die mit der Fälschung der Arbeitszeitdaten einhergehen liegen beim Nutzer.</string>
     <string name="correct_start_end_preference_key">de.tastykatana.zeiterfassung.correctstartendtimespreferencekey</string>
     <string name="pref_category_export_title">Stundenzettelexport</string>
     <string name="user_name_preference_title">Name</string>
