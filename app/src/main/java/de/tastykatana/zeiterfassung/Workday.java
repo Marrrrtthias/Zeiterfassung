@@ -67,7 +67,7 @@ public class Workday {
     }
 
     public String toFormattedString() {
-        return start.toString("dd.MM.yyyy   E") + "\t" + start.toString("HH:mm") + "\t" + end.toString("HH:mm") + "\t" + duration.getStandardHours() + ":" + duration.getStandardMinutes();
+        return start.toString("dd.MM.yyyy   E ") + "\t" + start.toString("HH:mm") + "\t" + end.toString("HH:mm") + "\t" + PeriodFormatters.HOURS_AND_Minutes.print(duration.toPeriod());
     }
 
     public int getWeekday() {

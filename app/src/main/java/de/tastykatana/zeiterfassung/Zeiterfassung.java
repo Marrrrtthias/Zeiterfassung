@@ -233,7 +233,7 @@ public class Zeiterfassung {
         // add sum of all sessions in this month
         TextView sessionSum = new TextView(context);
         sessionSum.setTextSize(TypedValue.COMPLEX_UNIT_PX,12);
-        sessionSum.setText(context.getString(R.string.time_sum_for_month, sumOfAllSessions.getStandardHours(), sumOfAllSessions.getStandardMinutes()));
+        sessionSum.setText(context.getString(R.string.time_sum_for_month, PeriodFormatters.HOURS_AND_Minutes.print(sumOfAllSessions.toPeriod())));
         result.addView(sessionSum);
 
         // add another spacer
