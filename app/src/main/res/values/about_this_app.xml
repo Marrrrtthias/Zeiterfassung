@@ -31,6 +31,8 @@
     <!-- TODO update changelog -->
     <string name="aboutLibraries_description_special3_text">
         <![CDATA[
+        <i>Version 1.0.1</i><br>
+        - launcher icon hinzugefügt<br>
         <i>Version 1.0-beta</i><br>
         - die App heißt jetzt Stechuhr (danke anonymer Jodler für den Namensvorschlag)<br>
         - der Dateipfad für den Stundenzettelexport kann nun in den Einstellungen geändert werden<br>
